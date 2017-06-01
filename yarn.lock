@@ -4206,6 +4206,13 @@ react-native-experimental-navigation@0.27.x:
   version "0.14.0"
   resolved "https://github.com/expo/react-native-maps/archive/v0.14.0.tar.gz#993c90136e9370c693b423960fcb679b1c25cad8"
 
+react-native-markdown-view@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-markdown-view/-/react-native-markdown-view-1.0.0.tgz#95021220ef0757bda28db045f483056a4831d045"
+  dependencies:
+    react-native-tabular-grid "github:Benjamin-Dobell/react-native-tabular-grid"
+    simple-markdown "^0.2.1"
+
 react-native-router-flux@^3.39.2:
   version "3.39.2"
   resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-3.39.2.tgz#f5373136440e627dfc39edc61cb4bf54581245e0"
@@ -4248,6 +4255,10 @@ react-native-scripts@0.0.30:
 react-native-tabs@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/react-native-tabs/-/react-native-tabs-1.0.9.tgz#75d3c35e8b5b6970869eab282372cb32e2a782cd"
+
+"react-native-tabular-grid@github:benjamin-dobell/react-native-tabular-grid":
+  version "0.0.0-development"
+  resolved "https://codeload.github.com/benjamin-dobell/react-native-tabular-grid/tar.gz/64853b096f77ddcd9ffcf8e8045ab91b16e054b1"
 
 react-native-vector-icons@4.1.1:
   version "4.1.1"
@@ -4851,6 +4862,10 @@ shellwords@^0.1.0:
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
+
+simple-markdown@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/simple-markdown/-/simple-markdown-0.2.1.tgz#6df51517681f6aab4df1cc980cf6b845bb6b3d33"
 
 simple-plist@^0.2.1:
   version "0.2.1"

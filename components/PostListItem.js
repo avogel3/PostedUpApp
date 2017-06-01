@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, TouchableWithoutFeedback } from "react-native";
+import { MarkdownView } from "react-native-markdown-view";
 
 class PostListItem extends Component {
   onRowPress() {
@@ -13,9 +14,9 @@ class PostListItem extends Component {
       <TouchableWithoutFeedback>
         <View style={styles.postContainer}>
           <View style={styles.postContainerInner}><Text>{title}</Text></View>
-          <View style={styles.postContainerInner}>
-            <Text>{content}</Text>
-          </View>
+          <MarkdownView style={styles.postContainerInner}>
+            {content}
+          </MarkdownView>
         </View>
       </TouchableWithoutFeedback>
     );

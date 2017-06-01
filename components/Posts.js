@@ -56,8 +56,8 @@ const styles = {
   containerStyles: {
     flex: 1,
     flexDirection: "column",
-    marginLeft: 25,
-    marginRight: 25,
+    marginLeft: 10,
+    marginRight: 10,
     marginTop: 75
   }
 };
