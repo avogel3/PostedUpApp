@@ -9,7 +9,8 @@
 * Depends on the PostedUp Rails app running locally. Check out the Postedup Repo, install it & run the server to handle requests from the API.
 
 
-** Running Instructions **
+**Running Instructions**
+
 * Run Android Sim. with `yarn run android`
 * Alternatively, iOS with `yarn run ios`
 * Run a Expo Server `yarn start`
