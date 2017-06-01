@@ -1,11 +1,27 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
+import { connect } from "react-redux";
+import { loadPosts } from "../reducers/PostsReducer";
+import Spinner from "./Spinner";
 
 class Posts extends Component {
+  componentWillMount() {
+    this.props.loadPosts();
+  }
+
   render() {
+    console.log(this.props);
+    const isLoadingPosts = loading => {
+      if (loading) {
+        return <Spinner />;
+      }
+    };
+
+    const { loading, posts } = this.props;
+
     return (
       <View style={styles.containerStyles}>
-        <Text style={styles.bodyText}>This is the posts view.</Text>
+        {isLoadingPosts(loading)}
       </View>
     );
   }
@@ -24,4 +40,13 @@ const styles = {
   }
 };
 
-export default Posts;
+const mapStateToProps = ({ postsRequest }) => {
+  const { loading, posts } = postsRequest;
+  return { loading, posts };
+};
+
+const mapDispatchToProps = {
+  loadPosts
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);
