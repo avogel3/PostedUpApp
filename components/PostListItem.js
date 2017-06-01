@@ -1,22 +1,27 @@
 import React, { Component } from "react";
 import { Text, View, TouchableWithoutFeedback } from "react-native";
-import { MarkdownView } from "react-native-markdown-view";
+import _ from "lodash";
+import { Actions } from "react-native-router-flux";
+import { Container } from "./common";
 
 class PostListItem extends Component {
   onRowPress() {
-    //console.log("Row Press!");
+    const { id } = this.props.post;
+    Actions.post({ post_id: id });
   }
 
   render() {
-    const { title, content } = this.props.post;
-    console.log(this.props);
+    const { title, author, posted_date } = this.props.post;
     return (
-      <TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View style={styles.postContainer}>
-          <View style={styles.postContainerInner}><Text>{title}</Text></View>
-          <MarkdownView style={styles.postContainerInner}>
-            {content}
-          </MarkdownView>
+          <View style={styles.postContainerInner}>
+            <Text>{_.truncate(title, { length: 50 })}</Text>
+            <View>
+              <Text style={styles.authorText}>By {author}</Text>
+              <Text style={styles.authorText}>{posted_date}</Text>
+            </View>
+          </View>
         </View>
       </TouchableWithoutFeedback>
     );
@@ -29,11 +34,15 @@ const styles = {
     borderColor: "#ddd",
     borderRadius: 3,
     borderWidth: 1,
-    marginBottom: 10,
-    marginTop: 10
+    marginTop: 10,
+    marginLeft: 10,
+    marginRight: 10
   },
   postContainerInner: {
     margin: 5
+  },
+  authorText: {
+    color: "#a9a9a9"
   }
 };
 

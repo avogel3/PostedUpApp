@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Text, View, ListView } from "react-native";
 import { connect } from "react-redux";
 import { loadPosts } from "../reducers/PostsReducer";
-import Spinner from "./Spinner";
+import { Spinner } from "./common/Spinner";
 import PostListItem from "./PostListItem";
 
 class Posts extends Component {
@@ -32,6 +32,14 @@ class Posts extends Component {
     const isLoadingPosts = loading => {
       if (loading) {
         return <Spinner />;
+      } else {
+        return (
+          <ListView
+            enableEmptySections
+            dataSource={this.dataSource}
+            renderRow={this.renderRow}
+          />
+        );
       }
     };
 
@@ -39,25 +47,16 @@ class Posts extends Component {
 
     return (
       <View style={styles.containerStyles}>
-        <ListView
-          enableEmptySections
-          dataSource={this.dataSource}
-          renderRow={this.renderRow}
-        />
+        {isLoadingPosts(loading)}
       </View>
     );
   }
 }
 
 const styles = {
-  bodyText: {
-    justifyContent: "center"
-  },
   containerStyles: {
     flex: 1,
     flexDirection: "column",
-    marginLeft: 10,
-    marginRight: 10,
     marginTop: 75
   }
 };
