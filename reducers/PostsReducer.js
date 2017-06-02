@@ -7,22 +7,24 @@ const LOAD_POST_SUCCESS = "PostedUpApp/posts/LOAD_POST_SUCCESS";
 const INITIAL_STATE = {
   posts: [],
   error: "",
-  post: {}
+  post: {},
+  loading: false
 };
 
 export default function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case LOAD:
-      return { ...state };
+      return { ...state, loading: true };
     case LOAD_INDEX_SUCCESS:
       return {
         ...state,
-        posts: [...state.posts, ...action.payload]
+        posts: [...state.posts, ...action.payload],
+        loading: false
       };
     case LOAD_FAIL:
       return { ...state, error: action.payload };
     case LOAD_POST_SUCCESS:
-      return { ...state, post: action.payload };
+      return { ...state, post: action.payload, loading: false };
     default:
       return state;
   }
@@ -42,7 +44,6 @@ function fetchSinglePostFromApp(postId) {
 // Action Creators
 export function loadPosts(pageNum) {
   return dispatch => {
-    dispatch({ type: LOAD });
     fetchPostsFromApp(pageNum)
       .then(response => response.json())
       .then(responseJson => {

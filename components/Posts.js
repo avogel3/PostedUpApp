@@ -36,10 +36,6 @@ class Posts extends Component {
   }
 
   render() {
-    const { canLoadMore, pageIndex } = this.props;
-
-    const { loading } = this.props;
-
     return (
       <View style={styles.containerStyles}>
         <ListView
@@ -62,8 +58,8 @@ const styles = {
 };
 
 const mapStateToProps = ({ postsRequest }) => {
-  const { loading, posts } = postsRequest;
-  return { loading, posts };
+  const { posts } = postsRequest;
+  return { posts };
 };
 
 const mapDispatchToProps = {

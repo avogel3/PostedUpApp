@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, ScrollView } from "react-native";
+import { Text, View, ScrollView, Image } from "react-native";
 import { connect } from "react-redux";
 import { loadSinglePost } from "../reducers/PostsReducer";
 import { MarkdownView } from "react-native-markdown-view";
@@ -9,11 +9,21 @@ class Post extends Component {
   componentWillMount() {
     this.props.loadSinglePost(this.props.post_id);
   }
-
   render() {
-    const { author, title, content, posted_date } = this.props.post;
+    const { author, title, content, posted_date, image } = this.props.post;
     const { loading } = this.props;
-    console.log(this.props);
+
+    const loadImage = image_url => {
+      if ("undefined" !== typeof image_url) {
+        return (
+          <Image
+            style={{ width: 300, height: 200, resizeMode: "contain" }}
+            source={{ uri: image_url }}
+          />
+        );
+      }
+    };
+
     const isLoadingPost = loading => {
       if (loading) {
         return <Spinner />;
@@ -23,6 +33,7 @@ class Post extends Component {
             <Text>{title}</Text>
             <Text style={{ color: "#a9a9a9" }}>By {author}</Text>
             <Text style={{ color: "#a9a9a9" }}>{posted_date}</Text>
+            {loadImage(image)}
             <MarkdownView>
               {content}
             </MarkdownView>
@@ -30,6 +41,7 @@ class Post extends Component {
         );
       }
     };
+
     return (
       <View style={{ flex: 1, marginTop: 75 }}>
         <ScrollView>
