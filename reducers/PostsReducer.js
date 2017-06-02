@@ -5,7 +5,6 @@ const LOAD_POST_SUCCESS = "PostedUpApp/posts/LOAD_POST_SUCCESS";
 
 // Reducer
 const INITIAL_STATE = {
-  loading: false,
   posts: [],
   error: "",
   post: {}
@@ -14,38 +13,37 @@ const INITIAL_STATE = {
 export default function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case LOAD:
-      return { ...state, loading: true };
+      return { ...state };
     case LOAD_INDEX_SUCCESS:
       return {
         ...state,
-        loading: false,
-        posts: action.payload
+        posts: [...state.posts, ...action.payload]
       };
     case LOAD_FAIL:
-      return { ...state, loading: false, error: action.payload };
+      return { ...state, error: action.payload };
     case LOAD_POST_SUCCESS:
-      return { ...state, loading: false, post: action.payload };
+      return { ...state, post: action.payload };
     default:
       return state;
   }
 }
 
 // API Calls
-function fetchPostsFromApp() {
-  let localHost = "http://localhost:3000/posts.json";
+function fetchPostsFromApp(pageNum) {
+  let localHost = `https://whispering-basin-43337.herokuapp.com/posts.json?page=${pageNum}`;
   return fetch(localHost);
 }
 
 function fetchSinglePostFromApp(postId) {
-  let localHost = `http://localhost:3000/posts/${postId}.json`;
+  let localHost = `https://whispering-basin-43337.herokuapp.com/posts/${postId}.json`;
   return fetch(localHost);
 }
 
 // Action Creators
-export function loadPosts() {
+export function loadPosts(pageNum) {
   return dispatch => {
     dispatch({ type: LOAD });
-    fetchPostsFromApp()
+    fetchPostsFromApp(pageNum)
       .then(response => response.json())
       .then(responseJson => {
         loadPostsIndexSuccess(dispatch, responseJson.posts);
@@ -76,7 +74,7 @@ const loadPostsIndexSuccess = (dispatch, posts) => {
 };
 
 const loadFail = (dispatch, error) => {
-  dispatch({ type: LOAD_INDEX_FAIL, payload: error });
+  dispatch({ type: LOAD_FAIL, payload: error });
 };
 
 const loadPostSuccess = (dispatch, post) => {

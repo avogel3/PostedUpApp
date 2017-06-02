@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Text, View, ListView } from "react-native";
 import { connect } from "react-redux";
-import { loadPosts } from "../reducers/PostsReducer";
+import { loadPosts, checkCanLoadMore } from "../reducers/PostsReducer";
 import { Spinner } from "./common/Spinner";
 import PostListItem from "./PostListItem";
 
 class Posts extends Component {
+  state = { currentPage: 0 };
   componentWillMount() {
-    this.props.loadPosts();
+    this.props.loadPosts(this.state.currentPage);
     this.createDataSource(this.props);
   }
 
@@ -27,27 +28,26 @@ class Posts extends Component {
     return <PostListItem post={post} />;
   }
 
+  loadAdditionalPosts() {
+    let current = this.state.currentPage;
+    let newPageNum = current + 1;
+    this.setState({ currentPage: newPageNum });
+    this.props.loadPosts(this.state.currentPage);
+  }
+
   render() {
-    console.log(this.props);
-    const isLoadingPosts = loading => {
-      if (loading) {
-        return <Spinner />;
-      } else {
-        return (
-          <ListView
-            enableEmptySections
-            dataSource={this.dataSource}
-            renderRow={this.renderRow}
-          />
-        );
-      }
-    };
+    const { canLoadMore, pageIndex } = this.props;
 
     const { loading } = this.props;
 
     return (
       <View style={styles.containerStyles}>
-        {isLoadingPosts(loading)}
+        <ListView
+          enableEmptySections
+          dataSource={this.dataSource}
+          renderRow={this.renderRow}
+          onEndReached={this.loadAdditionalPosts.bind(this)}
+        />
       </View>
     );
   }

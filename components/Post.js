@@ -13,7 +13,7 @@ class Post extends Component {
   render() {
     const { author, title, content, posted_date } = this.props.post;
     const { loading } = this.props;
-
+    console.log(this.props);
     const isLoadingPost = loading => {
       if (loading) {
         return <Spinner />;
