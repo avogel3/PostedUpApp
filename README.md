@@ -11,10 +11,7 @@
 
 **Running Instructions**
 
-* Run Android Sim. with `yarn run android`
-* Alternatively, iOS with `yarn run ios`
-* Run a Expo Server `yarn start`
-* Test Suite `yarn test`
-
-
+* Be sure to install the Rails API, [PostedUp](https://github.com/avogel3/PostedUp), and have it running locally. eg - `rails server`
+* Run iOS with `yarn run ios`
+* -or- Run a Expo Server `yarn start`
 
