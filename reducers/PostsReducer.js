@@ -32,12 +32,12 @@ export default function reducer(state = INITIAL_STATE, action) {
 
 // API Calls
 function fetchPostsFromApp(pageNum) {
-  let localHost = `https://whispering-basin-43337.herokuapp.com/posts.json?page=${pageNum}`;
+  let localHost = `http://localhost:3000/posts.json?page=${pageNum}`;
   return fetch(localHost);
 }
 
 function fetchSinglePostFromApp(postId) {
-  let localHost = `https://whispering-basin-43337.herokuapp.com/posts/${postId}.json`;
+  let localHost = `https://localhost:3000/posts/${postId}.json`;
   return fetch(localHost);
 }
 

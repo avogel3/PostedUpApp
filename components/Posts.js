@@ -5,6 +5,7 @@ import { loadPosts, checkCanLoadMore } from "../reducers/PostsReducer";
 import { Spinner } from "./common/Spinner";
 import PostListItem from "./PostListItem";
 
+
 class Posts extends Component {
   state = { currentPage: 0 };
   componentWillMount() {

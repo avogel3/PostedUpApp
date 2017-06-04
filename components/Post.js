@@ -14,7 +14,7 @@ class Post extends Component {
     const { loading } = this.props;
 
     const loadImage = image_url => {
-      if ("undefined" !== typeof image_url) {
+      if (image_url != null) {
         return (
           <Image
             style={{ width: 300, height: 200, resizeMode: "contain" }}
