@@ -10,7 +10,7 @@ class Post extends Component {
     this.props.loadSinglePost(this.props.post_id);
   }
   render() {
-    const { author, title, content, posted_date, image } = this.props.post;
+    const { author, title, content, posted_at, image } = this.props.post;
     const { loading } = this.props;
 
     const loadImage = image_url => {
@@ -30,9 +30,15 @@ class Post extends Component {
       } else {
         return (
           <Container>
-            <Text>{title}</Text>
-            <Text style={{ color: "#a9a9a9" }}>By {author}</Text>
-            <Text style={{ color: "#a9a9a9" }}>{posted_date}</Text>
+            <Text>
+              {title}
+            </Text>
+            <Text style={{ color: "#a9a9a9" }}>
+              By {author}
+            </Text>
+            <Text style={{ color: "#a9a9a9" }}>
+              {posted_at}
+            </Text>
             {loadImage(image)}
             <MarkdownView>
               {content}

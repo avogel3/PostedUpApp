@@ -11,15 +11,21 @@ class PostListItem extends Component {
   }
 
   render() {
-    const { title, author, posted_date } = this.props.post;
+    const { title, author, posted_at } = this.props.post;
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View style={styles.postContainer}>
           <View style={styles.postContainerInner}>
-            <Text>{_.truncate(title, { length: 50 })}</Text>
+            <Text>
+              {_.truncate(title, { length: 50 })}
+            </Text>
             <View>
-              <Text style={styles.authorText}>By {author}</Text>
-              <Text style={styles.authorText}>{posted_date}</Text>
+              <Text style={styles.authorText}>
+                By {author}
+              </Text>
+              <Text style={styles.authorText}>
+                {posted_at}
+              </Text>
             </View>
           </View>
         </View>
