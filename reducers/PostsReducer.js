@@ -3,6 +3,9 @@ const LOAD_FAIL = "PostedUpApp/posts/LOAD_FAIL";
 const LOAD_INDEX_SUCCESS = "PostedUpApp/posts/LOAD_INDEX_SUCCESS";
 const LOAD_POST_SUCCESS = "PostedUpApp/posts/LOAD_POST_SUCCESS";
 
+// TODO: This really should be set in an env variable
+const API_URL = "http:localhost:3000/api";
+
 // Reducer
 const INITIAL_STATE = {
   posts: [],
@@ -32,13 +35,13 @@ export default function reducer(state = INITIAL_STATE, action) {
 
 // API Calls
 function fetchPostsFromApp(pageNum) {
-  let localHost = `http://localhost:3000/posts.json?page=${pageNum}`;
-  return fetch(localHost);
+  let getPostsIndexUrl = `${API_URL}/posts?page=${pageNum}`;
+  return fetch(getPostsIndexUrl);
 }
 
 function fetchSinglePostFromApp(postId) {
-  let localHost = `https://localhost:3000/posts/${postId}.json`;
-  return fetch(localHost);
+  let getPostShowUrl = `${API_URL}/posts/${postId}`;
+  return fetch(getPostShowUrl);
 }
 
 // Action Creators
