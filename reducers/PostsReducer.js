@@ -27,7 +27,7 @@ export default function reducer(state = INITIAL_STATE, action) {
     case LOAD_FAIL:
       return { ...state, error: action.payload };
     case LOAD_POST_SUCCESS:
-      return { ...state, post: action.payload, loading: false };
+      return { ...state, post: action.payload.post, loading: false };
     default:
       return state;
   }
